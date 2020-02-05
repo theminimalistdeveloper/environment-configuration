@@ -1,0 +1,8 @@
+ {
+    "languageserver": {
+        "kotlin": {
+            "command": "/Users/d442275/Downloads/kotlin-language-server/server/build/scripts/kotlin-language-server",
+            "filetypes": ["kotlin"]
+        }
+    }
+}
