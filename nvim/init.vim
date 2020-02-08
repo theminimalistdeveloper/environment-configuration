@@ -86,7 +86,7 @@
 " PLUGINS {
     call plug#begin('~/.config/nvim/plugins')
     Plug 'ryanoasis/vim-devicons'
-    Plug 'scrooloose/nerdtree'
+    " Plug 'scrooloose/nerdtree'
     Plug 'tpope/vim-surround'
     " Fuzzy Finder
     Plug 'kien/ctrlp.vim'
@@ -140,7 +140,6 @@
             let g:ale_completion_enabled = 1
             let g:ale_open_list = 0
             let g:ale_set_balloons = 0
-            let g:airline#extensions#ale#enabled = 1
             let g:ale_linters = {
             \   'javascript': ['eslint'],
             \   'json': ['eslint'],
@@ -187,7 +186,8 @@
             nmap <silent> t<C-g> :TestVisit<CR>
         " }
         " AIRLINE {
-            autocmd VimEnter * AirlineTheme simple
+            autocmd VimEnter * AirlineTheme nord
+            let g:airline#extensions#ale#enabled = 1
             let g:airline_powerline_fonts = 1
         " }
     " }

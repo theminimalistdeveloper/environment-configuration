@@ -1,0 +1,40 @@
+general {
+    output_format = "i3bar"
+    separator = "  "
+    colors = true
+    color_good = "#A3BE8C"
+    color_bad = "#BF616A"
+    interval = 10
+}
+
+order += "cpu_usage"
+order += "disk /"
+order += "wireless wlp3s0"
+order += "ethernet __first__"
+order += "time"
+
+cpu_usage {
+    format = "  %usage"
+    max_threshold = 75
+    format_above_threshold = " %usage"
+    degraded_threshold = 25
+    format_above_degraded_threshold = " %usage"
+}
+
+wireless wlp3s0 {
+    format_up = "  %quality@%essid"
+    format_down = "睊"
+}
+
+ethernet __first__ {
+    format_up = " %ip (%speed)"
+    format_down = ""
+}
+
+disk "/" {
+    format = "  %avail"
+}
+
+time {
+    format = "%H:%M:%S"
+}
