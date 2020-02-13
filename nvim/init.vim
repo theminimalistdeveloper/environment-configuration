@@ -137,7 +137,7 @@
     " PLUGINS CONFIGURATION
     " {
         " ALE {
-            let g:ale_completion_enabled = 1
+            let g:ale_completion_enabled = 0
             let g:ale_open_list = 0
             let g:ale_set_balloons = 0
             let g:ale_linters = {
@@ -151,12 +151,20 @@
             \   'json': ['prettier']
             \   }
 
-            nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-            nmap <silent> <C-j> <Plug>(ale_next_wrap)
+            let g:ale_sign_error = ''
+            let g:ale_sign_info = ''
+            let g:ale_sign_style_error = ''
+            let g:ale_sign_style_warning = ''
+            let g:ale_sign_warning = ''
+
+            let g:ale_type_map = { 'eslint': {'W': 'I'}}
+
             nmap <silent> <C-d> <Plug>(ale_fix)
         " }
         " COC {
             nmap <silent> <C-g> :call CocActionAsync('jumpDefinition')<cr>
+            nmap <silent> <C-d> :call CocActionAsync('doHover')<cr>
+            nmap <silent> <C-r> :call CocActionAsync('rename')<cr>
         " }
         " CNTRLP {
             let g:ctrlp_custom_ignore = 'git\|node_modules\|DS_store\|coverage'
@@ -169,9 +177,6 @@
             " Add spaces after comment delimiters by default
             let g:NERDSpaceDelims = 1
             map <C-c> <leader>ci
-        " }
-        " NERD Tree {
-            nmap <silent> <C-t> :NERDTreeToggle<cr>
         " }
         " ULTISNIPS {
             let g:UltiSnipsExpandTrigger="<TAB>"
@@ -187,6 +192,7 @@
         " }
         " AIRLINE {
             autocmd VimEnter * AirlineTheme nord
+            let g:airline#extensions#coc#enabled = 0
             let g:airline#extensions#ale#enabled = 1
             let g:airline_powerline_fonts = 1
         " }
