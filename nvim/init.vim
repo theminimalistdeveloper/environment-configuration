@@ -147,7 +147,7 @@
             map <Leader>cs :call CocActionAsync('showSignatureHelp')<cr>
             map <Leader>ch :call CocActionAsync('doHover')<cr>
             map <Leader>cr :call CocActionAsync('rename')<cr>
-            map <Leader>cx :call CocActionAsync('fixAll')<cr>
+            map <Leader>cp :CocCommand prettier.formatFile<cr>
         " }
         " CNTRLP {
             let g:ctrlp_custom_ignore = 'git\|node_modules\|DS_store\|coverage'
