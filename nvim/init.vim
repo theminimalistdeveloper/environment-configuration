@@ -1,4 +1,6 @@
 " GENERAL {
+    " Set leader key to space
+    let mapleader=" "
     " encoding
     set termencoding=utf-8
     set encoding=utf-8
@@ -72,13 +74,14 @@
     " Fyle type specific
     " Javascript
     autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
-    " Yaml
+    " Typescript
+    autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2
+    " YAML
     autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2
     " JSON
     autocmd FileType json setlocal shiftwidth=2 softtabstop=2
     " Kotlin
     autocmd BufReadPost *.kt setlocal filetype=kotlin
-
     " Remove trailing spaces
     autocmd BufWritePre * %s/\s\+$//e
 " }
@@ -107,6 +110,8 @@
     Plug 'junegunn/fzf'
     " Shortcut to comment lines and blocks of code in multiple languages
     Plug 'scrooloose/nerdcommenter'
+    " File explorer capabilities
+    Plug 'preservim/nerdtree'
     " Engine for linting code in multiple languages
     Plug 'w0rp/ale'
     " Integrates with debuggers from multiple languages
@@ -128,7 +133,6 @@
     " HTML
     Plug 'mattn/emmet-vim'
     " Themes
-    Plug 'dracula/vim'
     Plug 'arcticicestudio/nord-vim'
     " Development Environment
     Plug 'christoomey/vim-tmux-navigator'
@@ -136,47 +140,37 @@
 
     " PLUGINS CONFIGURATION
     " {
-        " ALE {
-            let g:ale_completion_enabled = 0
-            let g:ale_open_list = 0
-            let g:ale_set_balloons = 0
-            let g:ale_linters = {
-            \   'javascript': ['eslint'],
-            \   'json': ['eslint'],
-            \   'php': ['php'],
-            \   'python': ['pylint'],
-            \   'rust': ['rls']
-            \   }
-            let g:ale_fixers = {
-            \   'json': ['prettier']
-            \   }
-
-            let g:ale_sign_error = ''
-            let g:ale_sign_info = ''
-            let g:ale_sign_style_error = ''
-            let g:ale_sign_style_warning = ''
-            let g:ale_sign_warning = ''
-
-            let g:ale_type_map = { 'eslint': {'W': 'I'}}
-
-            nmap <silent> <C-d> <Plug>(ale_fix)
-        " }
         " COC {
-            nmap <silent> <C-g> :call CocActionAsync('jumpDefinition')<cr>
-            nmap <silent> <C-d> :call CocActionAsync('doHover')<cr>
-            nmap <silent> <C-r> :call CocActionAsync('rename')<cr>
+            map <Leader>cjd :call CocActionAsync('jumpDefinition')<cr>
+            map <Leader>cji :call CocActionAsync('jumpImplementation')<cr>
+            map <Leader>cjl :call CocActionAsync('jumpDeclaration')<cr>
+            map <Leader>cs :call CocActionAsync('showSignatureHelp')<cr>
+            map <Leader>ch :call CocActionAsync('doHover')<cr>
+            map <Leader>cr :call CocActionAsync('rename')<cr>
+            map <Leader>cx :call CocActionAsync('fixAll')<cr>
         " }
         " CNTRLP {
             let g:ctrlp_custom_ignore = 'git\|node_modules\|DS_store\|coverage'
+            map <Leader>po <C-p>
         " }
         " EMMET {
-            " activate Emmet
-            imap <C-z> <C-y>,
+            " Emmet activate
+            map <Leader>ea
         " }
         " NERD COMMENTER {
             " Add spaces after comment delimiters by default
             let g:NERDSpaceDelims = 1
-            map <C-c> <leader>ci
+            map <Leader>nc <plug>NERDCommenterToggle<cr>
+        " }
+        " NERD COMMENTER {
+            map <Leader>nt :NERDTreeToggleVCS<cr>
+            map <Leader>ntr :NERDTreeRefreshRoot<cr>
+        " }
+        " VIM Fugitive {
+            map <Leader>gb :Git blame<cr>
+            map <Leader>gp :Git pull<cr>
+            map <Leader>gl :Git log<cr>
+            map <Leader>gc :Git commit<cr>
         " }
         " ULTISNIPS {
             let g:UltiSnipsExpandTrigger="<TAB>"
@@ -184,11 +178,11 @@
         " }
         " VIM TEST {
             let test#strategy = "neovim"
-            nmap <silent> t<C-n> :TestNearest<CR>
-            nmap <silent> t<C-f> :TestFile<CR>
-            nmap <silent> t<C-s> :TestSuite<CR>
-            nmap <silent> t<C-l> :TestLast<CR>
-            nmap <silent> t<C-g> :TestVisit<CR>
+            map <Leader>tn :TestNearest<CR>
+            map <Leader>tf :TestFile<CR>
+            map <Leader>ts :TestSuite<CR>
+            map <Leader>tl :TestLast<CR>
+            map <Leader>tv :TestVisit<CR>
         " }
         " AIRLINE {
             autocmd VimEnter * AirlineTheme nord
